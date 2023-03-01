@@ -4,17 +4,19 @@ This repo includes the files necessary to run the Ambisonic HRTF pre-processing 
 If you use this code, please cite Thomas McKenzie's PhD thesis (University of York, 2019) [available here](https://etheses.whiterose.ac.uk/26445/):
 
    ```
-T. McKenzie: "High frequency reproduction in binaural Ambisonic rendering." PhD Thesis, University of York, 2019.
+T. McKenzie: "High frequency reproduction in binaural Ambisonic rendering." PhD Thesis, 
+University of York, 2019.
    ```
 
 See \test_scripts folder for test scripts:
 
-Run load_ambisonic_configuration to generate binaural Ambisonic decoders with the pre-processing techniques. Configure this script to select the desired pre-processing techniques. It will produce one pre-processed binaural Ambisonic decoder, and one with no pre-processing (labelled NPP). The included HRTFs are from the Benjamin Bernschutz KU 100 database: http://audiogroup.web.th-koeln.de/ku100hrir.html
+Run load_ambisonic_configuration to generate binaural Ambisonic decoders with the pre-processing techniques. Configure this script to select the desired pre-processing techniques. It will produce one pre-processed binaural Ambisonic decoder, and one with no pre-processing (labelled NPP). The included HRTFs are from the [Benjamin Bernschutz KU 100 database](http://audiogroup.web.th-koeln.de/ku100hrir.html).
 
 To test the decoders, run test_ambisonic_decoder. This will produce a figure with the diffuse-field responses of both decoders. It will also compare binaural Ambisonic rendering using the two decoders with standard (non-Ambisonic) HRIRs in the folder \hrirs. This comparison is done for predicted binaural colouration, using the `mckenzie2022` model as implemented in the [Auditory Modelling Toolbox](https://www.amtoolbox.org/models.php). Please cite the following paper for this: 
 
    ```
-T. McKenzie, C. Armstrong, L. Ward, D. Murphy, and G. Kearney. Predicting the colouration between binaural signals. Appl. Sci., 12(2441), 2022. 
+T. McKenzie, C. Armstrong, L. Ward, D. Murphy, and G. Kearney. Predicting the colouration 
+between binaural signals. Appl. Sci., 12(2441), 2022. 
    ```
 
 Other test metrics include interaural level difference (ILD) and interaural time difference (ITD). These will be plotted too. 
