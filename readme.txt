@@ -9,9 +9,10 @@ To test the decoders, run test_ambisonic_decoder. This will produce a figure wit
 To listen to the differences between the decoders, run test_sound_percussion, to hear the standard binaural Ambisonic decoder, followed by the pre-processed one, and then an HRTF convolution render. The sound is several percussive sounds virtually panned to various locations (see thesis for exact locations). 
 For another test sound script to hear the differences between the decoders, run test_sound_soundscape to hear the standard binaural Ambisonic decoder followed by the pre-processed one. The soundscape excerpts are from the Marc Green EigenScape database: https://zenodo.org/record/1012809
 
+Make sure to de-zip the hrir folder!
 
-Thomas McKenzie, University of York, 2019.
-thomas.mckenzie@york.ac.uk
+Thomas McKenzie, University of York, 2019. Now at University of Edinburgh.
+thomas.mckenzie@ed.ac.uk
 
 ----------
 This code requires the Matlab toolboxes Phased Array System Toolbox and Curve Fitting Toolbox to run. 
