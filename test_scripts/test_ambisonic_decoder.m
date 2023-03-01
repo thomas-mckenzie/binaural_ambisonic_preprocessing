@@ -87,16 +87,15 @@ ylim([min([dB_val_NPP;dB_val])-2 max([dB_val_NPP;dB_val])+2]);
 solid_angle_weighting = GetVoronoiPlotandSolidAng(azimuth_H, elevation_H, 0);
 solid_angle_weighting = solid_angle_weighting/(sum(solid_angle_weighting));
 
-% Compute ffts of Ambi and HRIRs
-freqRange = [20 20000];
-Nfft = length(hrirMatrix(:,1,1));
+f.fs = 48000; f.nfft = length(hrirMatrix(:,1,1)); f.minFreq = 20; f.maxFreq = 20000;
 
-[hrirMatrixFFT, fft_freqVector] = fft_matrix(hrirMatrix, Fs, Nfft, freqRange);
-[ambiMatrixFFT, ~] = fft_matrix(ambiMatrix, Fs, Nfft, freqRange);
-[ambiMatrixFFT_NPP, ~] = fft_matrix(ambiMatrix_NPP, Fs, Nfft, freqRange);
-
-[~,PavgSpecDiff_NPP] = perceptual_spectral_difference(ambiMatrixFFT_NPP,hrirMatrixFFT,solid_angle_weighting',fft_freqVector,0.01);%,'none');
-[~,PavgSpecDiff] = perceptual_spectral_difference(ambiMatrixFFT,hrirMatrixFFT,solid_angle_weighting',fft_freqVector,0.01);%,'none');
+% using the mckenzie2022 predicted binaural colouration model -- see
+% https://www.amtoolbox.org/models.php and 
+% T. McKenzie, C. Armstrong, L. Ward, D. Murphy, and G. Kearney.
+% Predicting the colouration between binaural signals. Appl. Sci.,
+% 12(2441), 2022.
+[~,PavgSpecDiff_NPP] = mckenzie2022(ambiMatrix_NPP,hrirMatrix,0,f,[],solid_angle_weighting,0,0.01);
+[~,PavgSpecDiff] = mckenzie2022(ambiMatrix,hrirMatrix,0,f,[],solid_angle_weighting,0,0.01);
 
 for i = 1: num_meas
     specDiffAmbiSAW_NPP(i,:) = PavgSpecDiff_NPP(:,i,:) * solid_angle_weighting(i);
