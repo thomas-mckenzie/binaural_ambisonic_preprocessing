@@ -19,7 +19,7 @@ T. McKenzie, C. Armstrong, L. Ward, D. Murphy, and G. Kearney. Predicting the co
 binaural signals. Appl. Sci., 12(2441), 2022. 
    ```
 
-Other test metrics include interaural level difference (ILD) and interaural time difference (ITD). These will be plotted too. 
+Other test metrics include change in interaural level difference (ILD) and interaural time difference (ITD).  
 
 To listen to the differences between the decoders, run test_sound_percussion, to hear the standard binaural Ambisonic decoder, followed by the pre-processed one, and then an HRTF convolution render. The sound is several percussive sounds virtually panned to various locations (see thesis for exact locations). 
 For another test sound script to hear the differences between the decoders, run test_sound_soundscape to hear the standard binaural Ambisonic decoder followed by the pre-processed one. The soundscape excerpts are from the [Marc Green EigenScape database](https://zenodo.org/record/1012809)
