@@ -3,8 +3,14 @@ This script allows the testing of binaural Ambisonic decoders. It plots
 the diffuse-field response of the decoders, and then compares the
 binaural Ambisonic rendering versus the standard (non-Ambisonic) HRIRs in
 folder \hrirs.
-This is in three ways: perceptual spectral difference (PSD), interaural
+This is in three ways: predicted binaural colouration (PBC), interaural
 level difference (ILD) and interaural time difference (ITD).
+
+To use the PBC model, see the mckenzie2022 predicted binaural colouration
+model: https://www.amtoolbox.org/models.php:
+        T. McKenzie, C. Armstrong, L. Ward, D. Murphy, and G. Kearney.
+        Predicting the colouration between binaural signals. Appl. Sci.,
+        12(2441), 2022.
 
 Run this script after running load_ambisonic_configuration.m
 
@@ -105,12 +111,12 @@ end
 weightedAmbiSpecDiffL_NPP = sum(specDiffAmbiSAW_NPP(:,1));
 weightedAmbiSpecDiffR_NPP = sum(specDiffAmbiSAW_NPP(:,2));
 weightedAmbiSpecDiffLandR_NPP = ((weightedAmbiSpecDiffL_NPP+weightedAmbiSpecDiffR_NPP)/2);
-disp(strcat('Average PBC NPP= ',num2str(weightedAmbiSpecDiffLandR_NPP)))
+disp(['Average PBC NPP = ',num2str(weightedAmbiSpecDiffLandR_NPP)])
 
 weightedAmbiSpecDiffL = sum(specDiffAmbiSAW(:,1));
 weightedAmbiSpecDiffR = sum(specDiffAmbiSAW(:,2));
 weightedAmbiSpecDiffLandR = ((weightedAmbiSpecDiffL+weightedAmbiSpecDiffR)/2);
-disp(strcat('Average PBC = ',num2str(weightedAmbiSpecDiffLandR)))
+disp(['Average PBC = ',num2str(weightedAmbiSpecDiffLandR)])
 
 specDiffAmbi_NPP = squeeze(PavgSpecDiff_NPP);
 specDiffAmbi = squeeze(PavgSpecDiff);
@@ -160,9 +166,9 @@ for i = 1: num_meas
 end
 
 meanILD_D_ambiSAW_NPP = sum(ILD_D_ambi_SAW_NPP);
-disp(strcat('Average \DeltaILD NPP = ',num2str(meanILD_D_ambiSAW_NPP)))
+disp(['Average \DeltaILD NPP = ',num2str(meanILD_D_ambiSAW_NPP)])
 meanILD_D_ambiSAW = sum(ILD_D_ambi_SAW);
-disp(strcat('Average \DeltaILD = ',num2str(meanILD_D_ambiSAW)))
+disp(['Average \DeltaILD = ',num2str(meanILD_D_ambiSAW)])
 
 subplot(4,2,5);
 heatmap_plot(x,y,ILD_D_ambi_NPP);colorbar; % caxis([0 7]);
@@ -197,9 +203,9 @@ for i = 1: num_meas
 end
 
 meanITD_D_ambiSAW_NPP = sum(ITD_D_ambi_SAW_NPP);
-disp(strcat('Average \DeltaITD NPP= ',num2str(meanITD_D_ambiSAW_NPP)))
+disp(['Average \DeltaITD NPP = ',num2str(meanITD_D_ambiSAW_NPP)])
 meanITD_D_ambiSAW = sum(ITD_D_ambi_SAW);
-disp(strcat('Average \DeltaITD = ',num2str(meanITD_D_ambiSAW)))
+disp(['Average \DeltaITD = ',num2str(meanITD_D_ambiSAW)])
 
 subplot(4,2,7);
 heatmap_plot(x,y,ITD_D_ambi_NPP);colorbar; % caxis([0 0.4]);

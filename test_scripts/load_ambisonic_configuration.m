@@ -1,39 +1,60 @@
 %{
 This test script illustrates how to generate binaural Ambisonic decoders
-for Ambisonic orders 1, 2, 3, and 5. The HRTFs are included in \hrirs
-folder for the L = 50 Lebedev grid (from the excellent Bernschutz (2013)
-database), which have been diffuse-field equalised to a uniform RMS
-response between 20Hz-20kHz. The binaural Ambisonic decoder can be
-specified as either basic weighted or dual-band (basic at low frequencies
-and Max rE at high frequencies).
+for Ambisonic orders 1 - 5. The HRTFs are included in \hrirs folder for the 
+L = 50 Lebedev grid (from the excellent Bernschutz (2013) database), which 
+have been diffuse-field equalised to a uniform RMS response between 20Hz - 
+20kHz. The binaural Ambisonic decoder can be specified as either basic 
+weighted or dual-band (basic at low frequencies and Max rE at high 
+frequencies).
 
 The user can then pre-process the HRIRs / SH binaural Ambisonic decoder.
 The four possible pre-processing techniques are:
 - Ambisonic Time Alignment
+        Zaunschirm et al. (2018), Evans et al. (1998), and Richter (2014).
 - Ambisonic ILD Optimisation
+        "Interaural level difference optimisation of binaural Ambisonic rendering,"
+        Applied Sciences, vol. 9, no. 6, 2019, T. McKenzie, D. T. Murphy, and G.
+        Kearney.
 - Ambisonic Diffuse-Field Equalisation
+        "Diffuse-field equalisation of binaural Ambisonic rendering," Applied Sci-
+        ences, vol. 8, no. 10, 2018, T. McKenzie, D. T. Murphy, and G. Kearney.
 - Ambisonic Directional-Bias Equalisation
+        "Directional bias equalisation of first order binaural Ambisonic rendering,"
+        in AES Conference on Audio for Virtual and Augmented Reality, Redmond,
+        USA, 2018, T. McKenzie, D. T. Murphy, and G. Kearney.
+        "Towards a perceptually optimal bias factor for directional bias equalisa-
+        tion of binaural Ambisonic rendering," in EAA Spatial Audio Signal Processing
+        Symposium, (pp. 97{102), Paris, France, 2019, T. McKenzie, D. T. Murphy, and G.
+        Kearney.
 
 Finally, the user can export the HRIRs as .wav files for use in other
 applications, VST plugins, etc.
 
-Thomas McKenzie, University of York, 2019.
+Thomas McKenzie, University of York, 2019. Any queries please email
+thomas.mckenzie@ed.ac.uk
+        "High frequency reproduction in binaural Ambisonic rendering." PhD Thesis, 
+        University of York, 2019, T. McKenzie.
 
-References:
-See Thomas McKenzie PhD thesis.
 %}
 
 %%
 clear variables; close all; clc;
 
-ambisonic_order = 1; % specify Ambisonic order here
+addpath(genpath('./ambisonics/'));
+addpath(genpath('./hrirs/'));
+addpath(genpath('./pre_processing_techniques'));
+addpath(genpath('./signal_processing'));
+addpath(genpath('./test_scripts'));
+addpath(genpath('./voronoi_solid_angle'));
+
+ambisonic_order = 3; % specify Ambisonic order here
 dualband_flag   = 1; % specify decoder type (basic = 0, dual-band = 1)
 export_HRIRs    = 0; % specify whether to export pre-processed HRIRs
 
 % Choose pre-processing techniques
-ta_flag  = 0;
+ta_flag  = 1;
 aio_flag = 1;
-dfe_flag = 0;
+dfe_flag = 1;
 dbe_flag = 0; bias_factor = 33; bias_direction = [0 0]; % bias_direction should be in degrees in [azimuth elevation]
 
 % Load virtual loudspeaker HRIRs
@@ -77,7 +98,6 @@ if export_HRIRs == 1 % Export as .wav files
     end
     disp('Pre-processed HRIRs exported!');
 end
-
 
 %% Run test script
 test_ambisonic_decoder
