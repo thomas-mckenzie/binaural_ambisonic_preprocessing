@@ -105,12 +105,12 @@ end
 weightedAmbiSpecDiffL_NPP = sum(specDiffAmbiSAW_NPP(:,1));
 weightedAmbiSpecDiffR_NPP = sum(specDiffAmbiSAW_NPP(:,2));
 weightedAmbiSpecDiffLandR_NPP = ((weightedAmbiSpecDiffL_NPP+weightedAmbiSpecDiffR_NPP)/2);
-disp(strcat('Average PSD NPP= ',num2str(weightedAmbiSpecDiffLandR_NPP)))
+disp(strcat('Average PBC NPP= ',num2str(weightedAmbiSpecDiffLandR_NPP)))
 
 weightedAmbiSpecDiffL = sum(specDiffAmbiSAW(:,1));
 weightedAmbiSpecDiffR = sum(specDiffAmbiSAW(:,2));
 weightedAmbiSpecDiffLandR = ((weightedAmbiSpecDiffL+weightedAmbiSpecDiffR)/2);
-disp(strcat('Average PSD = ',num2str(weightedAmbiSpecDiffLandR)))
+disp(strcat('Average PBC = ',num2str(weightedAmbiSpecDiffLandR)))
 
 specDiffAmbi_NPP = squeeze(PavgSpecDiff_NPP);
 specDiffAmbi = squeeze(PavgSpecDiff);
